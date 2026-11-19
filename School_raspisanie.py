@@ -29,7 +29,7 @@ TZ = timezone(timedelta(hours=5))
 
 AUTOPOST_HOUR = 8
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=MAX_TOKEN)
 dp = Dispatcher()
 
 # ==========================================
