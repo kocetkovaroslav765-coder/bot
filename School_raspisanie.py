@@ -17,9 +17,9 @@ from maxapi.utils.inline_keyboard import InlineKeyboardBuilder
 # НАСТРОЙКИ
 # ==========================================
 
-
+MAX_TOKEN = os.environ["MAX_TOKEN"]
 CHANNEL_ID = -81175028780360
-ADMIN_ID = 64340040
+ADMIN_ID = {64340040, 25841956}
 
 STATE_FILE = "state.json"
 TEMPLATES_DIR = "templates"
