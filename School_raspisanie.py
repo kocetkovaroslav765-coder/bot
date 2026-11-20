@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 # ==========================================
 load_dotenv()
 MAX_TOKEN = os.environ["MAX_TOKEN"]
-CHANNEL_ID = -81175028780360
-ADMIN_ID = 64340040
+CHANNEL_ID = os.environ["CHANNEL_ID"]
+ADMIN_ID = os.environ["ADMIN_ID"]
 
 STATE_FILE = "state.json"
 TEMPLATES_DIR = "templates"
@@ -310,7 +310,7 @@ async def cmd_start(event: MessageCreated):
     if not event.message.sender:
         return
 
-    if event.message.sender.user_id != ADMIN_ID:
+    if event.message.sender.user_id not in ADMIN_ID:
         return
 
     await event.message.answer(
@@ -324,7 +324,7 @@ async def cmd_start(event: MessageCreated):
 # ==========================================
 @dp.message_callback(F.callback.payload == "toggle_auto_delete")
 async def toggle_auto_delete(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -338,7 +338,7 @@ async def toggle_auto_delete(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "open_settings")
 async def open_settings(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -353,7 +353,7 @@ async def open_settings(event: MessageCallback):
 # ==========================================
 @dp.message_callback(F.callback.payload == "control_panel")
 async def control_panel(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -367,7 +367,7 @@ async def control_panel(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "toggle_autopost")
 async def toggle_autopost(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -414,7 +414,7 @@ async def render_template_card(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "shablone")
 async def shablone(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -424,7 +424,7 @@ async def shablone(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "tmpl_prev")
 async def tmpl_prev(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         return
     set_waiting_for_template(None)
     save_template_index(load_template_index() - 1)
@@ -433,7 +433,7 @@ async def tmpl_prev(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "tmpl_next")
 async def tmpl_next(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         return
     set_waiting_for_template(None)
     save_template_index(load_template_index() + 1)
@@ -443,7 +443,7 @@ async def tmpl_next(event: MessageCallback):
 @dp.message_callback(F.callback.payload == "tmpl_current")
 async def tmpl_current(event: MessageCallback):
     """Кнопка с названием дня: просто показывает статус, ничего не меняет."""
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         return
 
     day_key, day_rus = WEEKDAYS[load_template_index()]
@@ -455,7 +455,7 @@ async def tmpl_current(event: MessageCallback):
 
 @dp.message_callback(F.callback.payload == "tmpl_replace")
 async def tmpl_replace(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         return
 
     day_key, day_rus = WEEKDAYS[load_template_index()]
@@ -476,7 +476,7 @@ async def tmpl_replace(event: MessageCallback):
 # ==========================================
 @dp.message_callback(F.callback.payload == "back_to_main")
 async def back_to_main(event: MessageCallback):
-    if event.callback.user.user_id != ADMIN_ID:
+    if event.callback.user.user_id not in ADMIN_ID:
         await event.answer(notification="Нет доступа!")
         return
 
@@ -496,7 +496,7 @@ async def handle_photos(event: MessageCreated):
     if not event.message.sender:
         return
 
-    if event.message.sender.user_id != ADMIN_ID:
+    if event.message.sender.user_id not in ADMIN_ID:
         return
 
     attachments = event.message.body.attachments or []
