@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 # ==========================================
 # НАСТРОЙКИ
 # ==========================================
-
+load_dotenv()
 MAX_TOKEN = os.environ["MAX_TOKEN"]
 CHANNEL_ID = -81175028780360
 ADMIN_ID = 64340040
