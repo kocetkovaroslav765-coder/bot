@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 MAX_TOKEN = os.environ["MAX_TOKEN"]
 CHANNEL_ID = os.environ["CHANNEL_ID"]
-ADMIN_ID = os.environ["ADMIN_ID"]
+ADMIN_ID = {25841956,64340040}
 
 STATE_FILE = "state.json"
 TEMPLATES_DIR = "templates"
