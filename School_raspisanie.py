@@ -12,7 +12,7 @@ from maxapi.types import (
     CallbackButton,
 )
 from maxapi.utils.inline_keyboard import InlineKeyboardBuilder
-
+from dotenv import load_dotenv
 # ==========================================
 # НАСТРОЙКИ
 # ==========================================
